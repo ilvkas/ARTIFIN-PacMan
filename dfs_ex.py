@@ -15,9 +15,9 @@ def key(state):
     """
 
     return (
+        # add pacman position (have a look at GameState to find the proper function)
+        # add food state (have a look at GameState to find the proper 'grid boolean food' state function)
         state.getPacmanPosition(), state.getFood()
-        # TODO ..., # add pacman position (have a look at GameState to find the proper function)
-        # TODO ... # add food state (have a look at GameState to find the proper 'grid boolean food' state function)
     )
 
 
@@ -60,25 +60,25 @@ class PacmanAgent(Agent):
         """
 
         path = []
-        frontier = Stack() # TODO: DFS = Stack     # initialise the corresponding data structure
-        frontier.push(state.getPacmanPosition(), path) # TODO: push      # add current state and path to the fringe
-        explored = [] # TODO: list?       # define a data structure to keep track of explored positions
+        frontier = Stack() # initialise the corresponding data structure
+        frontier.push((state,  path)) # add current state and path to the fringe
+        explored = [] # define a data structure to keep track of explored positions
 
         while True:
-            if frontier.isEmpty(): # TODO: fringe = frontier, glaub ich hab ich gehoert      # check whether the fringe is empty so as to return an empty path
+            if frontier.isEmpty(): # check whether the fringe is empty so as to return an empty path
                 return []
 
-            current, path = frontier.pop() # TODO: pop from stack     # get current solution from fringe, composed of current state and path
+            current, path = frontier.pop() # get current solution from fringe, composed of current state and path
 
-            if state.getNumFood() > 0: # TODO: wenn noch essen da     # get current state and check whether there's no more food to eat
+            if current.getNumFood() < 1: # get current state and check whether there's no more food to eat
                 return path # return solution
 
-            current_key = state.getPacmanPosition() # TODO: einfach vom state?     # get current agent position
+            current_key = key(current) # get current agent position
 
-            if current_key in explored: # TODO: check ob still valid nach letzter todo     # if current agent position is explored, don't do anything
+            if current_key in explored: # if current agent position is explored, don't do anything
                 continue
             else:
-                explored.append(current_key) # TODO: check ob still valid nach vorletzter todo     # add  current position to the explored positions
+                explored.append(current_key) # add  current position to the explored positions
 
             for successor, action in current.generatePacmanSuccessors():
                 frontier.push((successor, path + [action]))
