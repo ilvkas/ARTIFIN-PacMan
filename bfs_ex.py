@@ -14,8 +14,9 @@ def key(state):
     """
 
     return (
-        ..., # add pacman's position (have a look at GameState to find the proper function)
-        ... # add food state (have a look at GameState to find the proper 'grid boolean food' state function)
+        state.getPacmanPosition(), state.getFood()
+        # add pacman's position (have a look at GameState to find the proper function)
+        # add food state (have a look at GameState to find the proper 'grid boolean food' state function)
     )
 
 
@@ -58,25 +59,25 @@ class PacmanAgent(Agent):
         """
 
         path = []
-        frontier = ... # initialise the corresponding data structure
-        frontier... # add current state and path to the fringe
-        explored = ... # define a data structure to keep track of explored positions
+        frontier = ... #TODO: # initialise the corresponding data structure
+        frontier... #TODO: # add current state and path to the fringe
+        explored = ... #TODO: # define a data structure to keep track of explored positions
 
         while True:
-            if ...: # check whether the fringe is empty so as to return an empty path
+            if ...: #TODO: # check whether the fringe is empty so as to return an empty path
                 return []
 
-            current, path = ... # get current solution from fringe, composed of current state and path
+            current, path = ... #TODO: # get current solution from fringe, composed of current state and path
 
-            if ...: # get current state and check whether there's no more food to eat
+            if ...: #TODO: # get current state and check whether there's no more food to eat
                 return path # return solution
 
-            current_key = ... # get current agent position
+            current_key = ... #TODO: # get current agent position
 
-            if ...: # if current agent position is explored, don't do anything
+            if ...: #TODO: # if current agent position is explored, don't do anything
                 continue
             else:
-                ... # add  current position to the explored positions
+                ... #TODO: # add  current position to the explored positions
 
             for successor, action in current.generatePacmanSuccessors():
                 frontier.push((successor, path + [action]))
